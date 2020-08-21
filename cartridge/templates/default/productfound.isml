@@ -1,0 +1,25 @@
+<!--- TEMPLATENAME: productfound.isml --->
+
+${Object.keys(pdict).toString()}
+
+<!--- 
+For Variables and Local include
+<isset name="product" value="${pdict.myProduct}" scope="pdict" /> 
+<isinclude template="product/producttile" />
+--->
+
+<!--- 
+For Remote Locate
+<isinclude url="${URLUtils.url('Product-IncludeLastVisited')}" /> 
+--->
+
+<!---
+ For isdecorate and isreplace
+  <isdecorate template="product/pt_productdetails"> ...existing content... </isdecorate>  
+--->
+ <!---
+ For Custom Tags/ismodule
+ <isinclude template="util/modules">
+ <isproducttile	product="${pdict.myProduct}"  showswatches="${true}" showpricing="${true}" />
+  --->
+ 

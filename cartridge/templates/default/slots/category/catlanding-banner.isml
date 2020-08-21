@@ -1,0 +1,31 @@
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+<iscache type="relative" hour="24"/>
+<isif condition="${slotcontent}">
+
+<iscomment> Render a tile of the category Name and the Category Landing Slot Image field </iscomment>
+
+<div class="category-slot">
+	<isloop items="${slotcontent.content}" var="category" status="loopstate">
+	<h1>${slotcontent.getSlotID()}</h1>
+	<h1>${asset.getSlotID()}</h1>
+		<div class="catlanding-banner">
+		<a href="${URLUtils.http('Search-Show', 'cgid', category.ID)}" title="${category.displayName}">
+				<isif condition="${"slotBannerImage" in category.custom && !empty(category.custom.slotBannerImage)}">
+					<img src="${category.custom.slotBannerImage.getURL()}" alt="${category.displayName}"/>
+					<h1><isprint value="${category.displayName}" encoding="off"/></h1>
+				
+				<iselse/>
+					<h1><isprint value="${category.displayName}" encoding="off"/></h1>
+					</isif>
+			</a>
+			</div>	
+				
+			 <!--- Extra Piece of Code --->
+			<div class="catlanding-banner">  
+			<isset name="myCategory" value="${category}" scope="page" />
+			 <isinclude template="function/firstProduct.isml" />
+			 </div>	
+				<!--- 	 Extra Piece of Code Finish --->
+	</isloop>
+</div>
+</isif>

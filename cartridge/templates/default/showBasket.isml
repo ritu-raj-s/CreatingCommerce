@@ -1,0 +1,8 @@
+<!--- TEMPLATENAME: showbasket.isml --->
+
+<br/>
+<isloop items="${pdict.Basket.getProductLineItems()}" var="productLineItem" status="loopStatus">
+myCount: ${loopStatus.count}
+myIndex: ${loopStatus.index}
+myProductName: ${productLineItem.product.name}<br/>
+</isloop>

@@ -1,0 +1,11 @@
+
+<isif condition="${myCategory.hasOnlineSubCategories()}">
+    <isset name="myCategory" value="${myCategory.subCategories['0']}" scope="page"></isset>
+    <isinclude template="function/firstProduct.isml" /> 
+<iselse/>
+			<isset name="productID" value="${myCategory.onlineProducts['0'].ID}"></isset>
+			<a href="${URLUtils.http('Product-Show','pid',session.custom.productID)}">
+			<img  style="height: 200px;" src="${myCategory.onlineProducts['0'].getImage('large').absURL}" alt="${myCategory.onlineProducts['0'].name}"  />
+			<h1><isprint value="${myCategory.onlineProducts['0'].name}" encoding="off"/></h1>
+			</a>
+</isif> 
