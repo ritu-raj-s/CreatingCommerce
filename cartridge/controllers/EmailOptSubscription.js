@@ -26,10 +26,12 @@ server.post('Handler', csrfProtection.validateAjaxRequest, server.middleware.htt
             var Transaction = require('dw/system/Transaction');
             try {
                 Transaction.wrap(function () {
-                    var CO = CustomObjectMgr.createCustomObject('EmailOptor', emailOptForm.email.value);
+                    var CO = CustomObjectMgr.createCustomObject('EmailOptFor', emailOptForm.email.value);
                     CO.custom.name = emailOptForm.name.value;
                     CO.custom.country = emailOptForm.country.value;
                 });
+
+                dw.system.Logger.getLogger('prefixOfFile', 'newsletter').info('Success');
 
                 res.json({
                     success: true,
@@ -38,11 +40,14 @@ server.post('Handler', csrfProtection.validateAjaxRequest, server.middleware.htt
             } catch (e) {
                 var exp = e;
                 if (exp.javaName == 'MetaDataException') {
+                    dw.system.Logger.getLogger('DuplicateEntry', 'newsletter').error('Fail Due To Duplicate Key');
+
                     res.json({
                         success: false,
                         error: 'Key Already Exists'
                     });
                 } else {
+                    dw.system.Logger.error('No Custom Object Definition');
                     res.json({
                         success: false,
                         error: 'Custom Object Definition Not Found'
